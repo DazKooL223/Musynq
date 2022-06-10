@@ -5,19 +5,33 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "./static/frontend"),
-    filename: "[name].js",
+    filename: "main.bundle.js",
   },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
+        use: "babel-loader",
       },
       { test: /\.css$/, use: 'css-loader' },
       { test: /\.ts$/, use: 'ts-loader' },
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: "babel-loader",
+      },
+    //   {
+    //     test: /\.(jpe?g|png|gif|svg)$/i, 
+    //     loader: 'file-loader',
+    //     options: {
+    //       name: '/public/icons/[name].[ext]'
+    //     }
+    // }
+    {
+      test: /\.(jpe?g|png|gif|svg)$/i, 
+      loader: 'file-loader',
+    }
     ],
   },
   optimization: {
